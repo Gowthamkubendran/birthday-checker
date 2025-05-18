@@ -43,7 +43,7 @@ public class BirthdayChecker {
             String host="mysql-24b6d43d-kubendranrani50-9114.g.aivencloud.com";
             String port="13951";
             String dbUser = "avnadmin";
-            String dbPass = "AVNS_SI4yzcRDkCi4RP7QXfK";
+            String dbPass =  System.getenv("DB_PASS");
               Connection con = DriverManager.getConnection( "jdbc:mysql://" + host + ":" + port + "/" + databaseName +"?ssl-mode=REQUIRED",
     dbUser, dbPass
 );
@@ -126,7 +126,7 @@ private static String buildBirthdayHtmlMessage(String prefix, List<String> frien
            public static void sendEmail(String to, String subject, String content) throws UnsupportedEncodingException {
         final String from = "kubendranrani50@gmail.com";  
         final String fromName = "Birthday Reminder App";// Replace with your email
-        final String password = "spkp ytir lozz kacb";        // Use App Password (not your email password)
+        final String password = System.getenv("EMAIL_PASS");       // Use App Password (not your email password)
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
