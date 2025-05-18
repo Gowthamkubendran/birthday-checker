@@ -2,22 +2,24 @@ name: Birthday Checker Daily
 
 on:
   schedule:
-    - cron: '55 20 * * *'  # Runs daily at 2:25 AM IST (which is 20:55 UTC)
-  workflow_dispatch:       # Allows manual trigger
+    - cron: '55 20 * * *'  # Runs daily at 2:25 AM IST (20:55 UTC)
+  workflow_dispatch:
 
 jobs:
   run-checker:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Set up Docker
-        uses: docker/setup-buildx-action@v2
-
-      - name: Build Docker image
-        run: docker build -t birthday-checker .
+      - name: Pull Docker image from Docker Hub
+        run: docker pull gowthamkubendran034/birthday-checker:latest
 
       - name: Run Birthday Checker
-        run: docker run birthday-checker
+        run: |
+          docker run --rm \
+            -e DB_HOST=${{ secrets.DB_HOST }} \
+            -e DB_PORT=${{ secrets.DB_PORT }} \
+            -e DB_NAME=${{ secrets.DB_NAME }} \
+            -e DB_USER=${{ secrets.DB_USER }} \
+            -e DB_PASS=${{ secrets.DB_PASS }} \
+            -e EMAIL_PASS=${{ secrets.EMAIL_PASS }} \
+            gowthamkubendran034/birthday-checker:latest

@@ -12,4 +12,5 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 COPY --from=build /app/target/*jar-with-dependencies.jar app.jar
 
+
 CMD ["java", "-jar", "app.jar"]
