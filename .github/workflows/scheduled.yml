@@ -16,10 +16,10 @@ jobs:
       - name: Run Birthday Checker
         run: |
           docker run --rm \
-            -e DB_HOST=${{ secrets.DB_HOST }} \
-            -e DB_PORT=${{ secrets.DB_PORT }} \
-            -e DB_NAME=${{ secrets.DB_NAME }} \
-            -e DB_USER=${{ secrets.DB_USER }} \
-            -e DB_PASS=${{ secrets.DB_PASS }} \
-            -e EMAIL_PASS=${{ secrets.EMAIL_PASS }} \
+            -e DB_HOST="${{ secrets.DB_HOST }}" \
+            -e DB_PORT="${{ secrets.DB_PORT }}" \
+            -e DB_NAME="${{ secrets.DB_NAME }}" \
+            -e DB_USER="${{ secrets.DB_USER }}" \
+            -e DB_PASS="${{ secrets.DB_PASS }}" \
+            -e EMAIL_PASS="${{ secrets.EMAIL_PASS }}" \
             gowthamkubendran034/birthday-checker:latest
