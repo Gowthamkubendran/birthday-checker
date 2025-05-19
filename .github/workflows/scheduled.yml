@@ -2,7 +2,7 @@ name: Birthday Checker Daily
 
 on:
   schedule:
-    - cron: '55 20 * * *'  # Runs daily at 2:25 AM IST (20:55 UTC)
+    - cron: '30 23 * * *'  # Runs daily at 2:25 AM IST (20:55 UTC)
   workflow_dispatch:
 
 jobs:
